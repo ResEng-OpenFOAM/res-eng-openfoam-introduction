@@ -2,16 +2,16 @@
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
-    \\  /    A nd           | Version:  7
+    \\  /    A nd           | Version:  dev
      \\/     M anipulation  |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
-    version     2.0;
-    format      ascii;
-    class       dictionary;
-    location    "system";
-    object      fvSolution;
+    version         2;
+    format          ascii;
+    class           dictionary;
+    location        "system";
+    object          fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -19,11 +19,11 @@ solvers
 {
     T
     {
-        solver          smoothSolver;
+        solver          PBiCG;
         smoother        GaussSeidel;
-        tolerance       1e-12;
-        relTol          0;
-        maxIter         1;
+        tolerance       1e-07;
+        relTol          1e-05;
+        preconditioner  DILU;
     }
 }
 
@@ -31,6 +31,8 @@ SIMPLE
 {
     nNonOrthogonalCorrectors 0;
 }
+
+solvers.T.preconditioner More;
 
 
 // ************************************************************************* //
